@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form th:action="@{/user/reg}" th:object="${newUser}" method="post">
+        <div>
+            <h2>Main info</h2>
+        </div>
+        <div>
+            <input type="text" th:field="*{email}" placeholder="Email">
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+            <p th:if="${emailExistMessage}" th:text="${emailExistMessage}"></p>
+        </div>
+        <div>
+            <input type="password" th:field="*{password}" placeholder="Password">
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+        </div>
+        <div>
+            <h2>Additional info</h2>
+        </div>
+        <div>
+            <input type="text" th:field="*{userDetails.firstName}" placeholder="First name">
+            <p th:if="${#fields.hasErrors('userDetails.firstName')}" th:errors="*{userDetails.firstName}"></p>
+        </div>
+        <div>
+            <input type="text" th:field="*{userDetails.lastName}" placeholder="Last name">
+            <p th:if="${#fields.hasErrors('userDetails.lastName')}" th:errors="*{userDetails.lastName}"></p>
+        </div>
+        <div>
+            <input type="number" th:field="*{userDetails.telephoneNumber}" placeholder="Telephone Number">
+            <p th:if="${#fields.hasErrors('userDetails.telephoneNumber')}" th:errors="*{userDetails.telephoneNumber}"></p>
+        </div>
+        <div>
+            <input type="text" th:field="*{userDetails.userAddress.city}" placeholder="City">
+            <p th:if="${#fields.hasErrors('userDetails.userAddress.city')}" th:errors="*{userDetails.userAddress.city}"></p>
+        </div>
+        <div>
+            <input type="text" th:field="*{userDetails.userAddress.street}" placeholder="Street">
+            <p th:if="${#fields.hasErrors('userDetails.userAddress.street')}" th:errors="*{userDetails.userAddress.street}"></p>
+        </div>
+        <div>
+            <input type="number" th:field="*{userDetails.userAddress.houseNumber}" placeholder="House number">
+            <p th:if="${#fields.hasErrors('userDetails.userAddress.houseNumber')}" th:errors="*{userDetails.userAddress.houseNumber}"></p>
+        </div>
+        <div>
+            <input type="number" th:field="*{userDetails.userAddress.apartmentNumber}" placeholder="Apartment Number">
+            <p th:if="${#fields.hasErrors('userDetails.userAddress.apartmentNumber')}" th:errors="*{userDetails.userAddress.apartmentNumber}"></p>
+        </div>
+        <div>
+            <input type="number" th:field="*{userDetails.userAddress.postCode}" placeholder="Postal code">
+            <p th:if="${#fields.hasErrors('userDetails.userAddress.postCode')}" th:errors="*{userDetails.userAddress.postCode}"></p>
+        </div>
+        <div>
+            <button>Submit</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

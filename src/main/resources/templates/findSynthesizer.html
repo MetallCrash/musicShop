@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/product/find/synthesizer}" th:object="${synthesizerList}" method="post">
+    <input type="text" name="modelName" placeholder="Model name">
+    <button>Search</button>
+</form>
+<div th:if="${synthesizerList != null}"
+     th:each="synthesizer : ${synthesizerList}">
+    <a th:href="@{/product/synthesizer/${synthesizer.id}}"
+       th:text="${synthesizer.modelName}+' '+${synthesizer.price}"></a>
+    <hr>
+</div>
+</body>
+</html>

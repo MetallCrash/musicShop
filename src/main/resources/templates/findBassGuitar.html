@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/product/find/bass_guitar}" th:object="${bassGuitarList}" method="post">
+    <input type="text" name="modelName" placeholder="Model name">
+    <button>Search</button>
+</form>
+<div th:if="${bassGuitarList != null}"
+     th:each="bassGuitar : ${bassGuitarList}">
+    <a th:href="@{/product/bass_guitar/${bassGuitar.id}}"
+       th:text="${bassGuitar.modelName}+' '+${bassGuitar.price}"></a>
+    <hr>
+</div>
+</body>
+</html>

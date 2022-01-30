@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form th:action="@{/admin/user}" method="post">
+        <input type="email" th:name="email" placeholder="Email">
+        <button>Search</button>
+    </form>
+</div>
+<div th:object="${user}" th:if="${user != null}">
+    <p th:text="'First name:' + ${user.userDetails.firstName} +
+    '   Last name:' + ${user.userDetails.lastName} +
+    '   Email:' + ${user.email} +
+    '   Role:' + ${user.getUserDetails().getRoles()}"></p>
+    <form th:action="@{/admin}" method="post"
+          th:switch="${user.getUserDetails().getRoles()}">
+        <button th:name="email"  th:value="${user.email}" th:case="${user.getUserDetails().getRoles().contains(
+        T(by.tms.musicshop.entity.user.Role.USER))}">Appoint as staff.</button>
+        <button th:name="email"  th:value="${user.email}" th:case="${user.getUserDetails().getRoles().contains(
+        T(by.tms.musicshop.entity.user.Role.STAFF))}">Appoint as staff.</button>
+    </form>
+</div>
+<div th:if="${userList != null}" th:each="user : ${userList}">
+    <p th:text="'First name:' + ${user.userDetails.firstName} +
+    '   Last name:' + ${user.userDetails.lastName} +
+    '   Email:' + ${user.email} +
+    '   Role:' + ${user.getUserDetails().getRoles()}"></p>
+    <form th:action="@{/admin}" method="post"
+          th:switch="${user.getUserDetails().getRoles()}">
+        <button th:name="email"  th:value="${user.email}" th:case="${user.getUserDetails().getRoles().contains(
+        T(by.tms.musicshop.entity.user.Role.USER))}">Appoint as staff.</button>
+        <button th:name="email"  th:value="${user.email}" th:case="${user.getUserDetails().getRoles().contains(
+        T(by.tms.musicshop.entity.user.Role.STAFF))}">Appoint as staff.</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/product/find/electric_guitar}" th:object="${electricGuitarList}" method="post">
+    <input type="text" name="modelName" placeholder="Model name">
+    <button>Search</button>
+</form>
+<div th:if="${electricGuitarList != null}"
+     th:each="electricGuitar : ${electricGuitarList}">
+    <a th:href="@{/product/electric_guitar/{electricGuitarId}(electricGuitarId=${electricGuitar.id})}"
+       th:text="${electricGuitar.modelName}+' '+${electricGuitar.price}"></a>
+    <hr>
+</div>
+</body>
+</html>

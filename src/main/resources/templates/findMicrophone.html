@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/product/find/microphone}" th:object="${microphoneList}" method="post">
+    <input type="text" name="modelName" placeholder="Model name">
+    <button>Search</button>
+</form>
+<div th:if="${microphoneList != null}"
+     th:each="microphone : ${microphoneList}">
+    <a th:href="@{/product/microphone/${microphone.id}}"
+       th:text="${microphone.modelName}+' '+${microphone.price}"></a>
+    <hr>
+</div>
+</body>
+</html>

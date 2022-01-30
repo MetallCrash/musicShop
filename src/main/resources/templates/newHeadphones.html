@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/product/add/headphones}" th:object="${newHeadphones}" method="post">
+    <select th:field="*{product}">
+        <option th:each="productType : ${T(by.tms.musicshop.entity.product.ProductType).values()}"
+                th:value="${productType}"
+                th:text="${productType.displayName}">
+        </option>
+    </select>
+    <select th:field="*{manufacturer}">
+        <option th:each="manufacturer : ${T(by.tms.musicshop.entity.product.equipment.headphones.HeadphonesCompany).values()}"
+                th:value="${manufacturer}"
+                th:text="${manufacturer.displayName}">
+        </option>
+    </select>
+    <input type="text" th:field="*{modelName}" placeholder="Model">
+    <select th:field="*{type}">
+        <option th:each="type : ${T(by.tms.musicshop.entity.product.equipment.headphones.HeadphonesCompany).values()}"
+                th:value="${type}"
+                th:text="${type.displayName}">
+        </option>
+    </select>
+    <input type="number" th:field="*{price}" placeholder="Price">
+    <input type="text" th:field="*{frequencyRange}" placeholder="Frequency range">
+    <input type="number" th:field="*{inputPower}" placeholder="Input power">
+    <input type="text" th:field="*{description}" placeholder="Description">
+    <button>Add</button>
+</form>
+</body>
+</html>
